@@ -30,6 +30,7 @@ It combines microcontrollers, CAN simulation, MQTT messaging, and cloud-style da
 ## Project Structure
 
 Sensor-Data-logger/
+
 ├── stm32_firmware/       # Firmware for ADXL345 (I2C) + UART output
 
 ├── raspberry_pi/         # UART parsing + MQTT publisher
