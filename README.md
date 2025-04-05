@@ -31,11 +31,17 @@ It combines microcontrollers, CAN simulation, MQTT messaging, and cloud-style da
 
 Sensor-Data-logger/
 ├── stm32_firmware/       # Firmware for ADXL345 (I2C) + UART output
+
 ├── raspberry_pi/         # UART parsing + MQTT publisher
+
 ├── can_logger/           # CAN sender + CAN→MQTT bridge
+
 ├── node_red/             # Node-RED flow + dashboard config
+
 ├── influxdb/             # InfluxDB notes/scripts
+
 ├── docs/                 # screenshots or project documentation
+
 └── README.md             
 
 ---
