@@ -1,0 +1,342 @@
+[
+    {
+        "id": "a7d2d046af8fd397",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bdcb53f724a0af2f",
+        "type": "mqtt in",
+        "z": "a7d2d046af8fd397",
+        "name": "",
+        "topic": "sensor/accel",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "bf81e53916c49837",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [
+                "4473e2c455999a4a"
+            ]
+        ]
+    },
+    {
+        "id": "4473e2c455999a4a",
+        "type": "json",
+        "z": "a7d2d046af8fd397",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "dc3ef7989922466b",
+                "7eaa387da524868b",
+                "bcc940adc94b49a0",
+                "7dd6074d4f75c0df"
+            ]
+        ]
+    },
+    {
+        "id": "dc3ef7989922466b",
+        "type": "function",
+        "z": "a7d2d046af8fd397",
+        "name": "Format for InfluxDB",
+        "func": "if (!msg.payload || msg.payload.x === undefined || msg.payload.y === undefined || msg.payload.z === undefined) {\n    return null;  // Drop the message if it's malformed\n}\n\nmsg.measurement = \"acceleration\";\nmsg.payload = [\n  {\n    x: msg.payload.x,\n    y: msg.payload.y,\n    z: msg.payload.z\n  }\n];\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 140,
+        "wires": [
+            [
+                "b26d4d1692fb3c7a"
+            ]
+        ]
+    },
+    {
+        "id": "b26d4d1692fb3c7a",
+        "type": "influxdb out",
+        "z": "a7d2d046af8fd397",
+        "influxdb": "ef6921b456dc1fd0",
+        "name": "influxdb out",
+        "measurement": "acceleration",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1250,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e932d634140ea5f6",
+        "type": "ui_gauge",
+        "z": "a7d2d046af8fd397",
+        "name": "",
+        "group": "59a234825a06318e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "X Accel",
+        "label": "units",
+        "format": "msg.payload.x",
+        "min": "-300",
+        "max": "300",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1180,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9db25c1baa58aea5",
+        "type": "ui_chart",
+        "z": "a7d2d046af8fd397",
+        "name": "Accelerometer",
+        "group": "59a234825a06318e",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Accelerometer",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-300",
+        "ymax": "300",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1200,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0acd66be82b2b122",
+        "type": "ui_gauge",
+        "z": "a7d2d046af8fd397",
+        "name": "",
+        "group": "59a234825a06318e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Y Accel",
+        "label": "units",
+        "format": "msg.payload.y",
+        "min": "-300",
+        "max": "300",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1180,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7eaa387da524868b",
+        "type": "function",
+        "z": "a7d2d046af8fd397",
+        "name": "ChartFunction",
+        "func": "if (msg.payload && typeof msg.payload.x === 'number') {\n    msg.payload = msg.payload.x;\n    return msg;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 260,
+        "wires": [
+            [
+                "9db25c1baa58aea5",
+                "e932d634140ea5f6"
+            ]
+        ]
+    },
+    {
+        "id": "efd8654d0be5fcb4",
+        "type": "ui_gauge",
+        "z": "a7d2d046af8fd397",
+        "name": "",
+        "group": "59a234825a06318e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Z Accel",
+        "label": "units",
+        "format": "msg.payload.z",
+        "min": "-300",
+        "max": "300",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1180,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "bcc940adc94b49a0",
+        "type": "function",
+        "z": "a7d2d046af8fd397",
+        "name": "ChartFunction",
+        "func": "if (msg.payload && typeof msg.payload.y === 'number') {\n    msg.payload = msg.payload.y;\n    return msg;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 340,
+        "wires": [
+            [
+                "0acd66be82b2b122"
+            ]
+        ]
+    },
+    {
+        "id": "7dd6074d4f75c0df",
+        "type": "function",
+        "z": "a7d2d046af8fd397",
+        "name": "ChartFunction",
+        "func": "if (msg.payload && typeof msg.payload.z === 'number') {\n    msg.payload = msg.payload.z;\n    return msg;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 420,
+        "wires": [
+            [
+                "efd8654d0be5fcb4"
+            ]
+        ]
+    },
+    {
+        "id": "bf81e53916c49837",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ef6921b456dc1fd0",
+        "type": "influxdb",
+        "hostname": "localhost",
+        "port": 8086,
+        "protocol": "http",
+        "database": "sensordata",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "59a234825a06318e",
+        "type": "ui_group",
+        "name": "Accelerometer",
+        "tab": "2396098820bc2256",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2396098820bc2256",
+        "type": "ui_tab",
+        "name": "Sensor Dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
