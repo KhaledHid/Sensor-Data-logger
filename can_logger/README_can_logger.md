@@ -52,7 +52,7 @@ A separate Node-RED flow subscribes to 'sensor/can' and:
 ---
 
 ### CAN Project Structure
-
+```text
 
 can_logger/
 ├── can_sender.cpp        # Sends fake CAN messages
@@ -61,7 +61,7 @@ can_logger/
 
 
 > This CAN module is kept independent of the I2C sensor code to reflect a modular, real-world embedded design architecture.
-
+```
 ---
 
 ## Author
