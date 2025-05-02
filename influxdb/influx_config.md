@@ -1,5 +1,5 @@
 InfluxDB Configuration for Sensor Data Logger
-c
+
 This file documents how sensor data is stored in InfluxDB via Node-RED.
 
 Databases Used:
