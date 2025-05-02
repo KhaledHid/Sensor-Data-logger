@@ -1,4 +1,4 @@
--- InfluxDB initialization for sensor data logging (use in the Influx CLI):
+-- InfluxDB initialization for sensor data logging (use in the Influx CLI) :
 
 CREATE DATABASE sensordata;
 
