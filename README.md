@@ -49,22 +49,7 @@ Sensor-Data-logger/
 
 ## Flow Diagram
 
-[ ADXL345 ]
-     ↓
-[ STM32 (reads via I2C) ]
-     ↓ UART
-[ Raspberry Pi (UART to MQTT) ]
-     ↓ MQTT topic: sensor/accel
-[ Node-RED Dashboard + InfluxDB ]
-
-
-Alternatively:
-
-[ CAN Sender (Fake data generator) ]
-     ↓ sends via can0
-[ CAN-MQTT Bridge ]
-     ↓ MQTT topic: sensor/can
-[ Node-RED Dashboard + InfluxDB ]
+<pre> ```text [ ADXL345 ] ↓ [ STM32 (reads via I2C) ] ↓ UART [ Raspberry Pi (UART to MQTT) ] ↓ MQTT topic: sensor/accel [ Node-RED Dashboard + InfluxDB ] Alternatively: [ CAN Sender (Fake data generator) ] ↓ sends via can0 [ CAN-MQTT Bridge ] ↓ MQTT topic: sensor/can [ Node-RED Dashboard + InfluxDB ] ``` </pre>
 
 
 ---
