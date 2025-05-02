@@ -1,0 +1,19 @@
+-- Sample InfluxQL Queries for Sensor Data Logger
+
+-- Show the latest 5 entries from CAN data
+SELECT * FROM can_data ORDER BY time DESC LIMIT 5;
+
+-- Show the latest 5 entries from accelerometer data
+SELECT * FROM acceleration ORDER BY time DESC LIMIT 5;
+
+-- Average speed from CAN data over the last 10 minutes
+SELECT MEAN(speed) FROM can_data WHERE time > now() - 10m;
+
+-- Average X acceleration over the last 10 minutes
+SELECT MEAN(x) FROM acceleration WHERE time > now() - 10m;
+
+-- Speed trend over the last hour
+SELECT speed FROM can_data WHERE time > now() - 1h;
+
+-- Maximum RPM value recorded in the last 30 minutes
+SELECT MAX(rpm) FROM can_data WHERE time > now() - 30m;
