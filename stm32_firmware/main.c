@@ -23,16 +23,16 @@ int main(void)
 
     while (1)
     {
-        // ----- X-axis data -----
+        // X Axis Data
         uint8_t x_lsb = I2C_Read_Register(0x53, 0x32);      // Read X-axis LSB
         uint8_t x_msb = I2C_Read_Register(0x53, 0x33);      // Read X-axis MSB
         int16_t raw_x = (int16_t)((x_msb << 8) | x_lsb);    // Combine into signed 16-bit value
         char buf_x[32];
         sprintf(buf_x, "X: %d\r\n", raw_x);                 // Format as string
         UART_SendString(buf_x);                             // Send over UART
-        delay(100000);
+        delay(100000);                                      // Delay
 
-        // ----- Y-axis data -----
+        // Y Axis Data
         uint8_t y_lsb = I2C_Read_Register(0x53, 0x34);
         uint8_t y_msb = I2C_Read_Register(0x53, 0x35);
         int16_t raw_y = (int16_t)((y_msb << 8) | y_lsb);
@@ -41,7 +41,7 @@ int main(void)
         UART_SendString(buf_y);
         delay(100000);
 
-        // ----- Z-axis data -----
+        // Z Axis Data
         uint8_t z_lsb = I2C_Read_Register(0x53, 0x36);
         uint8_t z_msb = I2C_Read_Register(0x53, 0x37);
         int16_t raw_z = (int16_t)((z_msb << 8) | z_lsb);
