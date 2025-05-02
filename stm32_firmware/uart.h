@@ -1,9 +1,3 @@
-/*
- * uart.h
- *
- *  Created on: Mar 30, 2025
- *      Author: khale
- */
 
 #ifndef UART_H_
 #define UART_H_
