@@ -1,0 +1,9 @@
+-- InfluxDB initialization for sensor data logging (use in the Influx CLI):
+
+CREATE DATABASE sensordata;
+
+-- view all databases
+SHOW DATABASES;
+
+-- use the database
+USE sensordata;
