@@ -109,8 +109,14 @@ Flash using STM32CubeProgrammer or ST-Link Utility:
 
 ## Project Structure
 
-
-<pre> ```text stm32_firmware/ ├── main.c ├── i2c.c / i2c.h ├── spi.c / spi.h ├── uart.c / uart.h └── README.md ``` </pre>
+```text
+stm32_firmware/
+├── main.c
+├── i2c.c / i2c.h
+├── spi.c / spi.h
+├── uart.c / uart.h
+└── README.md
+```
 
 
 ---
