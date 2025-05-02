@@ -1,4 +1,4 @@
-# Data-logger
+# Introduction
 
 This project is a modular sensor data logger system designed to simulate real-world vehicle telemetry and visualize it in real-time.
 
