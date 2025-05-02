@@ -1,4 +1,4 @@
--- Sample InfluxQL Queries for Sensor Data Logger
+ -- Sample InfluxQL Queries for Sensor Data Logger
 
 -- Show the latest 5 entries from CAN data
 SELECT * FROM can_data ORDER BY time DESC LIMIT 5;
