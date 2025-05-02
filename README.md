@@ -6,7 +6,7 @@ It combines microcontrollers, CAN simulation, MQTT messaging, and cloud-style da
 
 ---
 
-## What’s Inside?
+## Parts List
 
 | Component                  | Description                                                       |
 |----------------------------|-------------------------------------------------------------------|
